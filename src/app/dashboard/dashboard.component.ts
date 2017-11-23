@@ -1,30 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Post } from '../posts';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css' ]
 })
-export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+export class DashboardComponent {
 
-  constructor(private heroService: HeroService) { }
+  @Input()
+  posts: Post[] = [];
+
+  constructor(private postService: ApiService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getAllPost();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+  getAllPost(): void {
+    this.postService.getAllPost()
+      .subscribe(posts => this.posts = posts);
   }
 }
-
-
-/*
-Copyright 2017 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

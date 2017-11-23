@@ -1,6 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
@@ -11,11 +12,14 @@ import { MessageService }       from './message.service';
 import { MessagesComponent }    from './messages/messages.component';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { PostDataService } from './post-data.service';
+import { ApiService } from './api.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     AppRoutingModule
   ],
   declarations: [
@@ -25,7 +29,7 @@ import { AppRoutingModule }     from './app-routing.module';
     HeroDetailComponent,
     MessagesComponent
   ],
-  providers: [ HeroService, MessageService ],
+  providers: [ PostDataService, ApiService, HeroService, MessageService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
